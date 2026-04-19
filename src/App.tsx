@@ -350,8 +350,8 @@ const Navbar = ({ lang, setLang }: { lang: Language, setLang: (l: Language) => v
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'py-6' : 'py-10'}`}>
-      <div className="container mx-auto px-10 flex items-center justify-between">
-        <div className="flex items-center gap-12">
+      <div className="container mx-auto px-6 md:px-10 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-0">
+        <div className="flex w-full md:w-auto items-center justify-between md:justify-start gap-12">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -410,9 +410,8 @@ const Navbar = ({ lang, setLang }: { lang: Language, setLang: (l: Language) => v
             {t.cta}
           </motion.a>
 
-          {/* Mobile Toggle */}
           <button 
-            className="md:hidden text-white"
+            className="md:hidden text-white ml-auto"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -476,7 +475,7 @@ const Navbar = ({ lang, setLang }: { lang: Language, setLang: (l: Language) => v
 };
 
 const SectionHeading = ({ children, subtitle, align = 'left' }: { children: React.ReactNode, subtitle?: string, align?: 'left' | 'center' }) => (
-  <div className={`mb-20 ${align === 'center' ? 'text-center' : 'text-left'}`}>
+  <div className={`mb-10 md:mb-20 ${align === 'center' ? 'text-center' : 'text-left'}`}>
     {subtitle && (
       <motion.p 
         initial={{ opacity: 0, y: 10 }}
@@ -491,7 +490,7 @@ const SectionHeading = ({ children, subtitle, align = 'left' }: { children: Reac
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="text-5xl md:text-7xl font-bold tracking-tighter"
+      className="text-4xl md:text-7xl font-bold tracking-tighter"
     >
       {children}
     </motion.h2>
@@ -638,7 +637,7 @@ const CaseStudyModal = ({ project, onClose, t }: { project: any, onClose: () => 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center p-6 md:p-10"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10"
     >
       <div className="absolute inset-0 bg-black/90 backdrop-blur-xl" onClick={onClose} />
       
@@ -650,12 +649,12 @@ const CaseStudyModal = ({ project, onClose, t }: { project: any, onClose: () => 
         >
         <button 
           onClick={onClose}
-          className="absolute top-8 right-8 z-10 w-12 h-12 rounded-full frosted-glass flex items-center justify-center hover:scale-110 transition-transform"
+          className="absolute top-4 right-4 md:top-8 md:right-8 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full frosted-glass flex items-center justify-center hover:scale-110 transition-transform"
         >
-          <X size={24} />
+          <X size={20} className="md:w-6 md:h-6" />
         </button>
 
-        <div className="p-8 md:p-16">
+        <div className="p-6 md:p-16">
           <div className="mb-12">
             <span className="text-[11px] uppercase tracking-[3px] font-bold opacity-40 mb-4 inline-block">{project.category}</span>
             <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6">{project.title}</h2>
@@ -790,7 +789,7 @@ interface ServiceCardProps {
 const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, features }) => (
   <motion.div 
     whileHover={{ y: -10 }}
-    className="frosted-glass p-10 rounded-[16px] flex flex-col justify-between group h-full"
+    className="frosted-glass p-8 md:p-10 rounded-[16px] flex flex-col justify-between group h-full"
   >
     <div>
       <h3 className="text-[11px] uppercase tracking-[1.5px] opacity-50 mb-4">{title}</h3>
@@ -985,7 +984,7 @@ export default function App() {
         </AnimatePresence>
 
       {/* Hero Section */}
-      <section className="hero-stage relative h-screen flex items-center md:items-end md:pb-32 overflow-hidden px-10">
+      <section className="hero-stage relative h-[100svh] min-h-[600px] flex items-center md:items-end py-32 md:pb-32 overflow-hidden px-6 md:px-10">
         <div className="container mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-20 items-center">
             <motion.div
@@ -1002,16 +1001,16 @@ export default function App() {
               <p className="text-lg md:text-xl text-white/50 max-w-sm mb-10 leading-relaxed font-medium">
                 {t.hero.description}
               </p>
-              <div className="flex flex-wrap gap-6">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-8">
                 <a 
                   href="#portfolio"
-                  className="bg-theme-accent text-white px-10 py-5 rounded-full font-bold text-sm tracking-tight hover:scale-105 transition-all shadow-xl shadow-theme-accent/20 flex items-center gap-2"
+                  className="bg-theme-accent text-white px-8 sm:px-10 py-5 rounded-full font-bold text-sm tracking-tight hover:scale-105 transition-all shadow-xl shadow-theme-accent/20 flex items-center justify-center gap-2"
                 >
                   {t.hero.ctaPrimary} <Play size={16} fill="white" />
                 </a>
                 <a 
                   href="#contact"
-                  className="px-10 py-5 frosted-glass rounded-full font-bold text-sm tracking-tight hover:bg-white/10 transition-all"
+                  className="px-8 sm:px-10 py-5 frosted-glass rounded-full font-bold text-sm tracking-tight hover:bg-white/10 transition-all text-center"
                 >
                   {t.hero.ctaSecondary}
                 </a>
@@ -1060,12 +1059,12 @@ export default function App() {
       </section>
 
       {/* Bento Stats / About Section */}
-      <section id="about" className="relative pt-20 md:pt-24 pb-20 md:pb-32 px-10">
+      <section id="about" className="relative pt-12 md:pt-24 pb-20 md:pb-32 px-6 md:px-10">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <motion.div 
               whileHover={{ y: -5 }}
-              className="md:col-span-2 frosted-glass p-10 rounded-[20px] h-60 flex flex-col justify-between"
+              className="md:col-span-2 frosted-glass p-8 md:p-10 rounded-[20px] min-h-60 flex flex-col justify-between"
             >
               <div>
                 <h3 className="text-[11px] uppercase tracking-[2.5px] font-bold opacity-30 mb-2">{t.stats.expertiseLabel}</h3>
@@ -1080,7 +1079,7 @@ export default function App() {
 
             <motion.div 
               whileHover={{ y: -5 }}
-              className="frosted-glass p-10 rounded-[20px] h-60 flex flex-col justify-between"
+              className="frosted-glass p-8 md:p-10 rounded-[20px] min-h-60 flex flex-col justify-between"
             >
               <div>
                 <h3 className="text-[11px] uppercase tracking-[2.5px] font-bold opacity-30 mb-2">{t.stats.performanceLabel}</h3>
@@ -1091,7 +1090,7 @@ export default function App() {
 
             <motion.div 
               whileHover={{ y: -5 }}
-              className="frosted-glass p-10 rounded-[20px] h-60 flex flex-col justify-between"
+              className="frosted-glass p-8 md:p-10 rounded-[20px] min-h-60 flex flex-col justify-between"
             >
               <div>
                 <h3 className="text-[11px] uppercase tracking-[2.5px] font-bold opacity-30 mb-2">{t.stats.connectLabel}</h3>
@@ -1104,7 +1103,7 @@ export default function App() {
       </section>
 
       {/* Portfolio Section */}
-      <section id="portfolio" className="py-20 px-10">
+      <section id="portfolio" className="py-20 px-6 md:px-10">
         <div className="container mx-auto">
           <SectionHeading subtitle={t.portfolio.subtitle}>{t.portfolio.title}</SectionHeading>
           
@@ -1152,7 +1151,7 @@ export default function App() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-32 px-10">
+      <section id="services" className="py-20 md:py-32 px-6 md:px-10">
         <div className="container mx-auto">
           <SectionHeading subtitle={t.services.subtitle} align="center">{t.services.title}</SectionHeading>
           
@@ -1170,10 +1169,10 @@ export default function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-32 px-10">
+      <section id="contact" className="py-20 md:py-32 px-6 md:px-10">
         <div className="container mx-auto">
-          <div className="frosted-glass rounded-[40px] overflow-hidden p-10 md:p-20">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+          <div className="frosted-glass rounded-[40px] overflow-hidden p-6 md:p-20">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20">
               <div>
                 <SectionHeading subtitle={t.contact.subtitle}>{t.contact.title}</SectionHeading>
                 <p className="text-xl text-white/50 mb-12 max-w-md">
@@ -1217,7 +1216,7 @@ export default function App() {
       </section>
 
       {/* Footer */}
-        <footer className="py-12 border-t border-white/5 px-10">
+        <footer className="py-12 border-t border-white/5 px-6 md:px-10">
           <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
             <p className="text-white/20 text-xs font-bold uppercase tracking-[2px]">
               {t.footer.rights}
